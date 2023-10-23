@@ -35,3 +35,30 @@ def shell_sort(A) :
         for i in range(gap) :
             sortGapInsertion(A, i, n - 1, gap)
         gap = gap//2					
+
+
+# 배열(리스트)을 거꾸로 출력하는 순환함수를 작성하라
+def printNumRev(n):
+    if n == 0:
+        return
+    else:
+        print(n, end=' ')
+        printNumRev(n-1)
+
+def printStingRev(A):
+    n = len(A)
+    if n == 1:
+        print(A[0],end=' ')
+        return
+    else:
+        print(A[-1],end='')
+        printStingRev(A[0:n-1])
+
+def printString(A):
+    n = len(A)
+    if n == 1:
+        print(A[0],end=' ')
+        return
+    else:
+        printStingRev(A[0:n-1])
+        print(A[-1],end='')

@@ -15,7 +15,7 @@ def kth_smallest_sort(A, k):
 
 # 퀵정렬 (가변적인 크기로 문제의 크기가 줄어드는 축소 정복 알고리즘)
 
-# 전체 알고리즘: quick_select()
+# 전체 알고리즘: quick_select() 최선: O(n) 최악: O(n²) 평균: O(n)
 def quick_selection(A, left, right, k):
     pos = partition(A, left, right)
 
@@ -25,6 +25,19 @@ def quick_selection(A, left, right, k):
         return quick_selection(A, left, pos-1, k)
     else:
         return quick_selection(A, pos+1, right, k-(pos+1-left))
+    
+#반복
+def quick_select_iter(A, left, right, k):
+    while left <= right:
+        pos = partition(A, left, right)
+        if (pos+1) == left+k:
+            return A[pos]
+        elif (pos+1 > left + k):
+            right = pos-1
+        else:
+            left = pos+1
+    return -1
+
     
 # 분할 알고리즘: partition()  O(n)
 def partition(A, left, right):
@@ -37,10 +50,9 @@ def partition(A, left, right):
         while high >= left and A[high] > pivot:
             high -= 1
 
-        if low > high:  # 역전
+        if low < high:  # 역전
             A[low], A[high] = A[high], A[low]
 
     A[left], A[high] = A[high], A[left]  # 마지막으로 high와 피벗 항목 교환
     return high
 
-# quick_select() 최선: O(n) 최악: O(n²) 평균: O(n)
