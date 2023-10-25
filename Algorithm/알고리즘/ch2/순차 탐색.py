@@ -1,5 +1,0 @@
-def sequential_search(A, key):
-    for i in range(len(A)):
-        if A[i] == key:
-            return i
-    return -1
